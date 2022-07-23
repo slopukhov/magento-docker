@@ -11,6 +11,22 @@
 
 * Ensure you do not have `dnsmasq` installed/enabled locally (will be auto-installed if you've use Valet+ to install Magento 2)
 
+### Recommendations
+
+* To improve performance enable VirtioFS in your docker app.
+
+Virtiofs is only available to users of the following macOS versions:
+
+macOS 12.2 and above (for Apple Silicon)
+macOS 12.3 and above (for Intel)
+
+To enable virtiofs in Docker Desktop:
+
+    Ensure that you are using Docker Desktop version 4.6, available here
+    Navigate to ‘Preferences’ (the gear icon) > ‘Experimental Features’
+    Select the ‘Use the new Virtualization framework’ and ‘Enable VirtioFS accelerated directory sharing’ toggles
+    Click ‘Apply & Restart’
+
 ### How to install
 
 #### Steps
