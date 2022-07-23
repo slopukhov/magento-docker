@@ -6,7 +6,7 @@ services:
     hostname: web
     container_name: web
     volumes:
-      - code:/var/www
+      - ../repos/magento2ce:/var/www/magento2ce
       - ./etc/nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./etc/nginx/server.crt:/etc/nginx/server.crt
       - ./etc/nginx/server.key:/etc/nginx/server.key
@@ -51,7 +51,7 @@ services:
     env_file:
       - ./.env
     volumes:
-      - code:/var/www
+      - ../repos/magento2ce:/var/www/magento2ce
       - ./.env:/tmp/.env
       - ./etc/php/app/sendmail:/usr/local/bin/sendmail
       - ./etc/php/tools/magento:/usr/local/bin/magento
@@ -92,5 +92,3 @@ services:
 networks:
   default:
     driver: bridge
-volumes:
-  code:

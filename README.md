@@ -9,9 +9,7 @@
 * [Docker Compose](https://docs.docker.com/compose/install/)
 * Setup SSH-keys on your github account. (see [docs](https://help.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)  for [help](https://help.github.com/en/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account))
 
-* (optional - for Mutagen installation only) Install Mutagen [docs](https://mutagen.io/documentation/introduction/installation)
 * Ensure you do not have `dnsmasq` installed/enabled locally (will be auto-installed if you've use Valet+ to install Magento 2)
-
 
 ### How to install
 
@@ -37,40 +35,49 @@
 
 ### Project start
 
-* RUN `mutagen project start` to start project (Magento 2 install, Magento 2 configuration apply)
+* RUN `docker-compose pull` to pull docker images
+* RUN `docker-compose up --build --detach` to build docker images
+
+#### Magento 2 install
+
+* RUN `docker-compose exec app magento install` to Magento 2 install
+
+#### Magento 2 config apply
+
+* RUN `docker-compose exec app magento config-setup` to Magento 2 configuration apply
 
 #### Generate performance profile
 
-* RUN `mutagen project run profile-generate` to generate performance profile
+* RUN `docker-compose exec app magento profile-generate` to generate performance profile
 
 #### Cron run
 
-* RUN `mutagen project run cron` to execute cron command
+* RUN `docker-compose exec app magento cron` to execute cron command
 
 #### Reindex run
 
-* RUN `mutagen project run reindex` to execute reindex command
+* RUN `docker-compose exec app magento reindex` to execute reindex command
 
 #### Cache flush
 
-* RUN `mutagen project run cache-flush` to execute cache flush command
+* RUN `docker-compose exec app magento cache-flush` to execute cache flush command
 
 #### Upgrade run
 
-* RUN `mutagen project run upgrade` to execute upgrade command
+* RUN `docker-compose exec app magento upgrade` to execute upgrade command
 
 #### DI compile
 
-* RUN `mutagen project run di-compile` to execute di compile command
+* RUN `docker-compose exec app magento di-compile` to execute di compile command
 
 #### Tests preparation
 
-* RUN `mutagen project run tests-setup` to execute test preparation command
+* RUN `docker-compose exec app magento tests-setup` to execute test preparation command
 
 #### Enable/disable Xdebug 
 
-* Enable: `mutagen project run xdebug-enable`
-* Disable: `mutagen project run xdebug-disable`
+* Enable: `docker-compose exec app magento xdebug-enable && docker-compose restart app web`
+* Disable: `docker-compose exec app magento xdebug-disable && docker-compose restart app web`
 
 :warning: Enabled Xdebug may slow your environment. 
  
@@ -82,5 +89,5 @@ Sent emails will be saved in folder `~/www/magento2ce/var/tmp/mails/` as .htm fi
 
 ### Project termination (removes all containers and volumes)
 
-* RUN `mutagen project terminate`
+* RUN `docker-compose down --volumes --remove-orphans`
 
