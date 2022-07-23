@@ -15,7 +15,7 @@
 
 * To improve performance enable VirtioFS in your docker app.
 
-Virtiofs is only available to users of the following macOS versions:
+VirtioFS is only available to users of the following macOS versions:
 
 macOS 12.2 and above (for Apple Silicon)
 macOS 12.3 and above (for Intel)
