@@ -5,4 +5,4 @@ cd /var/www/magento2ce
 script_name=$1
 dir=$(dirname $0)/magento2
 
-source ${dir}/${script_name}
+set -ex; source ${dir}/${script_name}

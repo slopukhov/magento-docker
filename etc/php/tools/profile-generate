@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-php -d memory_limit=-1 -f bin/magento setup:performance:generate-fixtures -s setup/performance-toolkit/profiles/${PROFILE_EDITION}/${PROFILE_SIZE}.xml
+php -d memory_limit=-1 -f bin/magento setup:performance:generate-fixtures -s setup/performance-toolkit/profiles/${PROFILE_EDITION}/${PROFILE_SIZE}.xml || true
 
 bin/magento cache:flush
 
