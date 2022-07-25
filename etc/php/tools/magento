@@ -4,19 +4,5 @@ cd /var/www/magento2ce
 
 script_name=$1
 dir=$(dirname $0)/magento2
-sh=${dir}/${script_name}
 
-umask 002
-if [[ $# -eq 0 ]]; then
-	ls -1 $dir
-	exit 0
-fi
-
-if [[ $2 == '-h' || $2 == '--help' ]]; then
-	cat $sh	
-else
-	shift
-	echo '------start------------'
-	set -ex; source $sh $@
-	echo '-------stop------------'
-fi
+source ${dir}/${script_name}

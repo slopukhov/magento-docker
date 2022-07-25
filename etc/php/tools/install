@@ -1,8 +1,4 @@
-#!/bin/bash
-shopt -s extglob
-
-source /tmp/.env
-#cp /var/www/magento-docker/etc/php/tools/* /usr/local/sbin
+#!/usr/bin/env bash
 
 sleep 30
 

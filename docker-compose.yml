@@ -52,7 +52,6 @@ services:
       - ./.env
     volumes:
       - ../repos/magento2ce:/var/www/magento2ce
-      - ./.env:/tmp/.env
       - ./etc/php/app/sendmail:/usr/local/bin/sendmail
       - ./etc/php/tools/magento:/usr/local/bin/magento
       - ./etc/php/tools:/usr/local/bin/magento2
