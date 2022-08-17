@@ -62,7 +62,7 @@ services:
       #COMPOSER_HOME: /var/www/.composer
       PHP_IDE_CONFIG: serverName=magento.test
   elastic:
-    image: elasticsearch:7.17.5
+    image: opensearchproject/opensearch:1.2.1
     hostname: elastic
     container_name: elastic
     ports:
@@ -72,6 +72,8 @@ services:
       - bootstrap.memory_lock=true
       - discovery.type=single-node
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m"
+      - plugins.security.disabled=true
     ulimits:
       memlock:
         soft: -1
