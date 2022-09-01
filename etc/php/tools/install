@@ -21,6 +21,8 @@ bin/magento setup:install \
    --admin-password=${ADMIN_PASSWORD} \
    --cleanup-database \
    --db-host=db --db-name=magento --db-prefix= \
+   --search-engine="opensearch" \
+   --opensearch-host=elastic --opensearch-port=${ELASTIC_PORT} \
    --elasticsearch-host=elastic --elasticsearch-port=${ELASTIC_PORT} \
 
 echo "Compiling Magento with changes..."
