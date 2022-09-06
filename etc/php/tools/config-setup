@@ -10,6 +10,8 @@ bin/magento setup:config:set -n --session-save=redis --session-save-redis-host=r
 
 bin/magento setup:config:set -n --amqp-host=rabbitmq --amqp-port=${RABBIT_PORT} --amqp-user=guest --amqp-password=guest
 
+bin/magento setup:upgrade
+
 bin/magento cache:flush
 
 php -d memory_limit=-1 -f bin/magento indexer:reindex
