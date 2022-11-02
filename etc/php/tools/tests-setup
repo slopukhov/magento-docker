@@ -1,4 +1,12 @@
 #!/usr/bin/env bash
 
+#integration
+echo "Prepare Integration Tests"
 php -r '(new PDO("mysql:host=db;dbname=magento", "root"))->exec("DROP DATABASE IF EXISTS magento_integration_tests;");'
 php -r '(new PDO("mysql:host=db;dbname=magento", "root"))->exec("CREATE DATABASE magento_integration_tests;");'
+
+#acceptance
+echo "Prepare Acceptance Tests"
+bin/magento config:set cms/wysiwyg/enabled disabled
+bin/magento config:set admin/security/use_form_key 0
+vendor/bin/mftf build:project

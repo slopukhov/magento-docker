@@ -91,6 +91,12 @@ services:
     container_name: rabbitmq
     ports:
       - "${RABBIT_PORT}:5672"
+  mftf:
+    image: seleniarm/standalone-chromium
+    hostname: mftf
+    container_name: mftf
+    ports:
+      - "${MFTF_PORT}:5900"
 networks:
   default:
     driver: bridge
