@@ -72,7 +72,6 @@ To enable virtiofs in Docker Desktop:
 * RUN `cd magento2ce` to go to the root directory of the project
 * RUN `bin/magento setup:performance:generate-fixtures -s setup/performance-toolkit/profiles/PROFILE_EDITION/PROFILE_SIZE.xml` to generate performance profile. . Instead of PROFILE_EDITION and PROFILE_SIZE - specify your Magento edition and required profile size
 * RUN `bin/magento indexer:reindex` to execute reindex command
-* RUN `bin/magento indexer:set-mode schedule` to execute reindex command
 * RUN `bin/magento cache:flush` to execute cache flush command
 
 #### Cron run
