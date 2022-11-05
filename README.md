@@ -9,23 +9,9 @@
 * [Docker Compose](https://docs.docker.com/compose/install/)
 * Setup SSH-keys on your github account. (see [docs](https://help.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)  for [help](https://help.github.com/en/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account))
 
+* (optional - for Mutagen installation only) Install Mutagen [docs](https://mutagen.io/documentation/introduction/installation)
 * Ensure you do not have `dnsmasq` installed/enabled locally (will be auto-installed if you've use Valet+ to install Magento 2)
 
-### Recommendations
-
-* To improve performance enable VirtioFS in your docker app.
-
-VirtioFS is only available to users of the following macOS versions:
-
-macOS 12.2 and above (for Apple Silicon)
-macOS 12.3 and above (for Intel)
-
-To enable virtiofs in Docker Desktop:
-
-    Ensure that you are using Docker Desktop version 4.6, available here
-    Navigate to ‘Preferences’ (the gear icon) > ‘Experimental Features’
-    Select the ‘Use the new Virtualization framework’ and ‘Enable VirtioFS accelerated directory sharing’ toggles
-    Click ‘Apply & Restart’
 
 ### How to install
 
@@ -51,49 +37,40 @@ To enable virtiofs in Docker Desktop:
 
 ### Project start
 
-* RUN `docker-compose pull` to pull docker images
-* RUN `docker-compose up --build --detach` to build docker images
-
-#### Magento 2 install
-
-* RUN `docker-compose exec app magento install` to Magento 2 install
-
-#### Magento 2 config apply
-
-* RUN `docker-compose exec app magento config-setup` to Magento 2 configuration apply
+* RUN `mutagen project start` to start project (Magento 2 install, Magento 2 configuration apply)
 
 #### Generate performance profile
 
-* RUN `docker-compose exec app magento profile-generate` to generate performance profile
+* RUN `mutagen project run profile-generate` to generate performance profile
 
 #### Cron run
 
-* RUN `docker-compose exec app magento cron` to execute cron command
+* RUN `mutagen project run cron` to execute cron command
 
 #### Reindex run
 
-* RUN `docker-compose exec app magento reindex` to execute reindex command
+* RUN `mutagen project run reindex` to execute reindex command
 
 #### Cache flush
 
-* RUN `docker-compose exec app magento cache-flush` to execute cache flush command
+* RUN `mutagen project run cache-flush` to execute cache flush command
 
 #### Upgrade run
 
-* RUN `docker-compose exec app magento upgrade` to execute upgrade command
+* RUN `mutagen project run upgrade` to execute upgrade command
 
 #### DI compile
 
-* RUN `docker-compose exec app magento di-compile` to execute di compile command
+* RUN `mutagen project run di-compile` to execute di compile command
 
 #### Tests preparation
 
-* RUN `docker-compose exec app magento tests-setup` to execute test preparation command
+* RUN `mutagen project run tests-setup` to execute test preparation command
 
 #### Enable/disable Xdebug 
 
-* Enable: `docker-compose exec app magento xdebug-enable && docker-compose restart app web`
-* Disable: `docker-compose exec app magento xdebug-disable && docker-compose restart app web`
+* Enable: `mutagen project run xdebug-enable`
+* Disable: `mutagen project run xdebug-disable`
 
 :warning: Enabled Xdebug may slow your environment. 
  
@@ -105,5 +82,5 @@ Sent emails will be saved in folder `~/www/magento2ce/var/tmp/mails/` as .htm fi
 
 ### Project termination (removes all containers and volumes)
 
-* RUN `docker-compose down --volumes --remove-orphans`
+* RUN `mutagen project terminate`
 

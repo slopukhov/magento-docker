@@ -1,10 +1,13 @@
 #!/usr/bin/env bash
 
+bin/magento config:set web/secure/base_url https://magento.test/
 bin/magento config:set web/seo/use_rewrites 1
 bin/magento config:set dev/template/allow_symlink 1
 bin/magento config:set admin/security/admin_account_sharing 1
 bin/magento config:set admin/security/session_lifetime 31536000
 bin/magento config:set system/security/max_session_size_admin 500000
+bin/magento config:set cms/wysiwyg/enabled disabled
+bin/magento config:set admin/security/use_form_key 0
 
 bin/magento setup:config:set -n --session-save=redis --session-save-redis-host=redis --session-save-redis-port=${REDIS_PORT} --cache-backend-redis-db=0
 
@@ -14,6 +17,7 @@ bin/magento setup:upgrade
 
 bin/magento cache:flush
 
-php -d memory_limit=-1 -f bin/magento indexer:reindex
+bin/magento indexer:set-mode schedule
+bin/magento indexer:reindex
 
 bin/magento cache:flush

@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-bin/magento setup:di:compile
-
-bin/magento cache:flush

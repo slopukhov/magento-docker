@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-php -d memory_limit=-1 -f bin/magento indexer:reindex
-
-bin/magento cache:flush

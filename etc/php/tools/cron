@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-bin/magento cron:run

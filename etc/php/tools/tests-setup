@@ -1,4 +1,25 @@
 #!/usr/bin/env bash
 
+#integration
+#known issues: https://github.com/magento/magento2/issues/33802
+echo "Prepare Integration Tests"
 php -r '(new PDO("mysql:host=db;dbname=magento", "root"))->exec("DROP DATABASE IF EXISTS magento_integration_tests;");'
 php -r '(new PDO("mysql:host=db;dbname=magento", "root"))->exec("CREATE DATABASE magento_integration_tests;");'
+cp /usr/local/bin/magento2/tests/integration/install-config-mysql.php /var/www/magento2ce/dev/tests/integration/etc
+
+#api-functional
+echo "Prepare Api-Functional Tests"
+php -r '(new PDO("mysql:host=db;dbname=magento", "root"))->exec("DROP DATABASE IF EXISTS magento_functional_tests;");'
+php -r '(new PDO("mysql:host=db;dbname=magento", "root"))->exec("CREATE DATABASE magento_functional_tests;");'
+cp /usr/local/bin/magento2/tests/api-functional/install-config-mysql.php /var/www/magento2ce/dev/tests/api-functional/config
+sed -i 's/magento.url/magento.test/' /var/www/magento2ce/dev/tests/api-functional/phpunit_graphql.xml.dist
+sed -i 's/magento.url/magento.test/' /var/www/magento2ce/dev/tests/api-functional/phpunit_rest.xml.dist
+sed -i 's/magento.url/magento.test/' /var/www/magento2ce/dev/tests/api-functional/phpunit_soap.xml.dist
+
+#acceptance
+echo "Prepare Acceptance Tests"
+cp /usr/local/bin/magento2/tests/acceptance/.env /var/www/magento2ce/dev/tests/acceptance
+cp /usr/local/bin/magento2/tests/acceptance/.credentials /var/www/magento2ce/dev/tests/acceptance
+vendor/bin/mftf build:project
+
+bin/magento cache:flush
