@@ -9,8 +9,9 @@ echo "$(date +"%T") Magento 2 Installation START"
 
 cd /var/www/magento2ce
 
+source /usr/local/bin/magento2/pre-scripts
+
 #install magento
-source /usr/local/bin/magento2/custom
 composer install
 bin/magento setup:install \
    --backend-frontname=admin \
@@ -30,6 +31,8 @@ echo "Compiling Magento with changes..."
 bin/magento setup:upgrade
 bin/magento setup:di:compile
 bin/magento cache:flush
+
+source /usr/local/bin/magento2/post-scripts
 
 echo "Magento 2 Successfully installed!"
 echo "To open it navigate to https://magento.test/"

@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# If you want to add custom dependencies before installation you can use this file for that.
+
+echo "Starting execution of custom post-scripts!"
+
+# bin/magento cron:run
+
+echo "Custom post-scripts completed successfully!"

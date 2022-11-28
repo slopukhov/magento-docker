@@ -47,7 +47,9 @@ To enable virtiofs in Docker Desktop:
 
 3. Copy `.env.dist` in `.env` and update the variables you need. 
 
-4. Optionally, you can update file `etc/php/tools/custom` to add custom dependencies or run other commands before installation.
+4. Optionally, you can update file `etc/php/tools/pre-scripts` to add custom dependencies or run other commands before installation.
+
+5. Optionally, you can update file `etc/php/tools/post-scripts` to run custom commands after installation.
 
 ### Project start
 

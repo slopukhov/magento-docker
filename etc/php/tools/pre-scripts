@@ -2,9 +2,9 @@
 
 # If you want to add custom dependencies before installation you can use this file for that.
 
-echo "Starting execution of custom scripts!"
+echo "Starting execution of custom pre-scripts!"
 
 # composer require opensearch-project/opensearch-php:2.0.0
 # composer update
 
-echo "Custom scripts completed successfully!"
+echo "Custom pre-scripts completed successfully!"
