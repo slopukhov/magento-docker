@@ -47,7 +47,7 @@ To enable virtiofs in Docker Desktop:
 
 3. Copy `.env.dist` in `.env` and update the variables you need. 
 
-4. Optionally update in `.env` the values for `PROFILE_EDITION` and `PROFILE_SIZE` which will be used when running the performance profile generation command
+4. Optionally, you can update file `etc/php/tools/custom` to add custom dependencies or run other commands before installation.
 
 ### Project start
 

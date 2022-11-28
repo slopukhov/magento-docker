@@ -10,6 +10,7 @@ echo "$(date +"%T") Magento 2 Installation START"
 cd /var/www/magento2ce
 
 #install magento
+source /usr/local/bin/magento2/custom
 composer install
 bin/magento setup:install \
    --backend-frontname=admin \
