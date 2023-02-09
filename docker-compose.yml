@@ -36,7 +36,7 @@ services:
       - "${DB_PORT}:3306"
     command: --default-authentication-plugin=mysql_native_password
   app:
-    image: slopukhov/php:8.1.8-fpm
+    image: slopukhov/php:8.1.15-fpm
     # to re-build image use the following docker file:
     # build:
     #   context: .
