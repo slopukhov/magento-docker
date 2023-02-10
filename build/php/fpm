@@ -24,9 +24,13 @@ RUN apt-get update \
         libgringotts-dev \
         libzip-dev \
         zlib1g-dev \
+        libcurl4-openssl-dev \
+        libpcre3 \
+        libpcre3-dev \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install pcntl gd opcache bcmath soap intl zip xsl pdo_mysql sockets \
     && pecl install -f xdebug apcu msgpack libsodium \
+    && pecl install -D "enable-sockets='no' enable-openssl='yes' enable-http2='yes' enable-mysqlnd='yes' enable-hook-curl='yes' enable-cares='yes' with-postgres='no'" openswoole \
     && docker-php-ext-enable pcntl gd opcache bcmath soap intl zip xsl pdo_mysql sockets apcu msgpack \
     && usermod -a -G root www-data \
     && chmod +x /usr/local/bin/*
