@@ -80,6 +80,12 @@
 * RUN `bin/magento setup:di:compile` to execute di compile command
 * RUN `bin/magento cache:flush` to execute cache flush command
 
+#### DB query-log
+
+* RUN `docker-compose exec app bash` to connect to docker container
+* RUN `cd magento2ce` to go to the root directory of the project
+* RUN `bin/magento dev:query-log:enable` to enable DB query-log
+
 #### Tests execution
 
 * RUN `docker-compose exec app bash` to connect to docker container
