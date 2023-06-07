@@ -108,6 +108,12 @@ To enable virtiofs in Docker Desktop:
 * RUN `bin/magento setup:di:compile` to execute di compile command
 * RUN `bin/magento cache:flush` to execute cache flush command
 
+#### DB query-log
+
+* RUN `docker-compose exec app bash` to connect to docker container
+* RUN `cd magento2ce` to go to the root directory of the project
+* RUN `bin/magento dev:query-log:enable` to enable DB query-log
+
 #### Tests execution
 
 * RUN `docker-compose exec app bash` to connect to docker container
@@ -134,6 +140,11 @@ Api Functional
 :warning: Enabled Xdebug may slow your environment. 
  
 :exclamation: port `9003` is used for debug. 
+
+#### Enable/disable uopz
+
+* Enable: `docker-compose exec app magento uopz-enable && docker-compose restart app web`
+* Disable: `docker-compose exec app magento uopz-disable && docker-compose restart app web`
 
 #### Emails sending
 
