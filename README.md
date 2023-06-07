@@ -113,6 +113,11 @@ Api Functional
  
 :exclamation: port `9003` is used for debug. 
 
+#### Enable/disable uopz
+
+* Enable: `mutagen project run uopz-enable`
+* Disable: `mutagen project run uopz-disable`
+
 #### Emails sending
 
 Sent emails will be saved in folder `~/www/magento2ce/var/tmp/mails/` as .htm files

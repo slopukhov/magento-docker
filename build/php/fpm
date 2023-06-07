@@ -1,4 +1,4 @@
-ARG PHP_VERSION=8.1.15
+ARG PHP_VERSION=8.1.19
 
 FROM php:$PHP_VERSION-fpm
 
@@ -27,6 +27,7 @@ RUN apt-get update \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install pcntl gd opcache bcmath soap intl zip xsl pdo_mysql sockets \
     && pecl install -f xdebug apcu msgpack libsodium \
+    && pecl install uopz-7.1.1 \
     && docker-php-ext-enable pcntl gd opcache bcmath soap intl zip xsl pdo_mysql sockets apcu msgpack \
     && usermod -a -G root www-data \
     && chmod +x /usr/local/bin/*
