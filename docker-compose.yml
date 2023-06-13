@@ -59,6 +59,7 @@ services:
       - ./etc/php/php.ini:/usr/local/etc/php/php.ini
       - ./etc/php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
       - ./etc/php/uopz.ini:/usr/local/etc/php/conf.d/uopz.ini
+      - ./etc/php/tideways.ini:/usr/local/etc/php/conf.d/tideways.ini
       - ./etc/php/php-fpm.conf:/usr/local/etc/php-fpm.conf
     environment:
       #COMPOSER_HOME: /var/www/.composer

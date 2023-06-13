@@ -113,10 +113,19 @@ Api Functional
  
 :exclamation: port `9003` is used for debug. 
 
-#### Enable/disable uopz
+#### Enable/disable uopz (Depends on the availability of the necessary extension in the PHP image used)
 
 * Enable: `mutagen project run uopz-enable`
 * Disable: `mutagen project run uopz-disable`
+
+:exclamation: for example, this extension is present in PHP image: `slopukhov/php:8.1.19-fpm`
+
+#### Enable/disable tideways (Depends on the availability of the necessary extension in the PHP image used)
+
+* Enable: `mutagen project run tideways-enable`
+* Disable: `mutagen project run tideways-disable`
+
+:exclamation: for example, this extension is present in PHP image: `slopukhov/php:7.3.33-fpm`
 
 #### Emails sending
 

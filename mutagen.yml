@@ -28,6 +28,8 @@ commands:
   xdebug-disable: docker-compose exec app magento xdebug-disable && docker-compose restart app web
   uopz-enable: docker-compose exec app magento uopz-enable && docker-compose restart app web
   uopz-disable: docker-compose exec app magento uopz-disable && docker-compose restart app web
+  tideways-enable: docker-compose exec app magento tideways-enable && docker-compose restart app web
+  tideways-disable: docker-compose exec app magento tideways-disable && docker-compose restart app web
   logs: docker-compose logs --follow
 
 # Synchronize code to the shared Docker volume via the Mutagen service.
