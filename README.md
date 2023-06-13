@@ -141,10 +141,19 @@ Api Functional
  
 :exclamation: port `9003` is used for debug. 
 
-#### Enable/disable uopz
+#### Enable/disable uopz (Depends on the availability of the necessary extension in the PHP image used)
 
 * Enable: `docker-compose exec app magento uopz-enable && docker-compose restart app web`
 * Disable: `docker-compose exec app magento uopz-disable && docker-compose restart app web`
+
+:exclamation: for example, this extension is present in PHP image: `slopukhov/php:8.1.19-fpm`
+
+#### Enable/disable tideways (Depends on the availability of the necessary extension in the PHP image used)
+
+* Enable: `docker-compose exec app magento tideways-enable && docker-compose restart app web`
+* Disable: `docker-compose exec app magento tideways-disable && docker-compose restart app web`
+
+:exclamation: for example, this extension is present in PHP image: `slopukhov/php:7.3.33-fpm`
 
 #### Emails sending
 
