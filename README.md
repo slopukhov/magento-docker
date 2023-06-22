@@ -80,6 +80,12 @@
 * RUN `bin/magento setup:di:compile` to execute di compile command
 * RUN `bin/magento cache:flush` to execute cache flush command
 
+#### DB query-log
+
+* RUN `docker-compose exec app bash` to connect to docker container
+* RUN `cd magento2ce` to go to the root directory of the project
+* RUN `bin/magento dev:query-log:enable` to enable DB query-log
+
 #### Tests execution
 
 * RUN `docker-compose exec app bash` to connect to docker container
@@ -106,6 +112,20 @@ Api Functional
 :warning: Enabled Xdebug may slow your environment. 
  
 :exclamation: port `9003` is used for debug. 
+
+#### Enable/disable uopz (Depends on the availability of the necessary extension in the PHP image used)
+
+* Enable: `mutagen project run uopz-enable`
+* Disable: `mutagen project run uopz-disable`
+
+:exclamation: for example, this extension is present in PHP image: `slopukhov/php:8.1.19-fpm`
+
+#### Enable/disable tideways (Depends on the availability of the necessary extension in the PHP image used)
+
+* Enable: `mutagen project run tideways-enable`
+* Disable: `mutagen project run tideways-disable`
+
+:exclamation: for example, this extension is present in PHP image: `slopukhov/php:7.3.33-fpm`
 
 #### Emails sending
 

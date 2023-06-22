@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+echo "$(sed "s|extension = tideways.so|#extension = tideways.so|" /usr/local/etc/php/conf.d/tideways.ini)" > /usr/local/etc/php/conf.d/tideways.ini

@@ -1,0 +1,40 @@
+ARG PHP_VERSION=7.3.33
+
+FROM php:$PHP_VERSION-fpm
+
+COPY --from=composer:2.2.19 /usr/bin/composer /usr/local/bin/
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        htop \
+        vim \
+        git \
+        wget \
+        unzip \
+        gnupg \
+        default-mysql-client \
+        libfreetype6-dev \
+        libjpeg62-turbo-dev \
+        libpng-dev \
+        libmcrypt-dev \
+        libsodium-dev \
+        libicu-dev \
+        libxslt-dev \
+        libssl-dev \
+        libgringotts-dev \
+        libzip-dev \
+        zlib1g-dev \
+    && docker-php-ext-configure gd --with-freetype-dir --with-jpeg-dir \
+    && docker-php-ext-install pcntl gd opcache bcmath soap intl zip xsl pdo_mysql sockets \
+    && pecl install -f xdebug-3.1.6 apcu msgpack libsodium \
+    && docker-php-ext-enable pcntl gd opcache bcmath soap intl zip xsl pdo_mysql sockets apcu msgpack \
+    && usermod -a -G root www-data \
+    && chmod +x /usr/local/bin/*
+
+RUN git clone -b 'v4.1.7' --depth=1 --single-branch https://github.com/tideways/php-xhprof-extension.git /usr/src/php/ext/tideways
+RUN cd /usr/src/php/ext/tideways && phpize && ./configure && make && make install
+
+WORKDIR /var/www
+
+EXPOSE 9000
+CMD ["php-fpm", "-R"]

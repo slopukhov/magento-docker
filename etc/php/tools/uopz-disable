@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+echo "$(sed "s|extension = uopz.so|#extension = uopz.so|" /usr/local/etc/php/conf.d/uopz.ini)" > /usr/local/etc/php/conf.d/uopz.ini
