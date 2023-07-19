@@ -88,6 +88,13 @@ To enable virtiofs in Docker Desktop:
 * RUN `cd magento2ce` to go to the root directory of the project
 * RUN `bin/magento indexer:reindex` to execute reindex command
 
+#### Change indexers mode
+
+* RUN `docker-compose exec app bash` to connect to docker container
+* RUN `cd magento2ce` to go to the root directory of the project
+* RUN `bin/magento indexer:set-mode realtime` to set realtime indexers mode
+* RUN `bin/magento indexer:set-mode schedule` to set schedule indexers mode
+
 #### Cache flush
 
 * RUN `docker-compose exec app bash` to connect to docker container

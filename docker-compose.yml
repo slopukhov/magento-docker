@@ -20,7 +20,7 @@ services:
     depends_on:
       - app
   db:
-    image: mariadb:10.4.12
+    image: mariadb:10.6.14
     deploy:
       resources:
         reservations:
@@ -36,7 +36,7 @@ services:
       - "${DB_PORT}:3306"
     command: --default-authentication-plugin=mysql_native_password
   app:
-    image: slopukhov/php:8.1.19-fpm
+    image: slopukhov/php:8.2.7-fpm
     # to re-build image use the following docker file:
     # build:
     #   context: .
@@ -64,7 +64,7 @@ services:
       #COMPOSER_HOME: /var/www/.composer
       PHP_IDE_CONFIG: serverName=magento.test
   elastic:
-    image: opensearchproject/opensearch:1.2.1
+    image: opensearchproject/opensearch:2.5.0
     hostname: elastic
     container_name: elastic
     ports:
@@ -81,13 +81,13 @@ services:
         soft: -1
         hard: -1
   redis:
-    image: redis:6.2.7
+    image: redis:7.0.12
     hostname: redis
     container_name: redis
     ports:
       - "${REDIS_PORT}:6379"
   rabbit:
-    image: rabbitmq:3.9.21
+    image: rabbitmq:3.11.20
     hostname: rabbitmq
     container_name: rabbitmq
     ports:
