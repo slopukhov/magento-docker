@@ -87,6 +87,18 @@
 * RUN `bin/magento setup:di:compile` to execute di compile command
 * RUN `bin/magento cache:flush` to execute cache flush command
 
+#### Static content deploy
+
+* RUN `docker-compose exec app bash` to connect to docker container
+* RUN `cd magento2ce` to go to the root directory of the project
+* RUN `bin/magento setup:static-content:deploy` to execute static-content deploy command
+
+#### Enable production mode
+
+* RUN `docker-compose exec app bash` to connect to docker container
+* RUN `cd magento2ce` to go to the root directory of the project
+* RUN `bin/magento deploy:mode:set production` to execute enable production mode command
+
 #### DB query-log
 
 * RUN `docker-compose exec app bash` to connect to docker container
@@ -126,6 +138,16 @@ Api Functional
 * Disable: `mutagen project run uopz-disable`
 
 :exclamation: for example, this extension is present in PHP image: `slopukhov/php:8.1.19-fpm`
+
+#### Enable/disable php-spx (Depends on the availability of the necessary extension in the PHP image used)
+
+* Enable: `mutagen project run spx-enable`
+* Disable: `mutagen project run spx-disable`
+
+Add parameters `?SPX_KEY=dev&SPX_ENABLED=1` to your URL to measure this URL. Example: `https://magento.test/?SPX_KEY=dev&SPX_ENABLED=1`
+Open with your browser the following URL: `https://magento.test/?SPX_KEY=dev&SPX_UI_URI=/` to access to the spx web UI control panel.
+
+:exclamation: for example, this extension is present in PHP image: `slopukhov/php:8.2.8-fpm`
 
 #### Enable/disable tideways (Depends on the availability of the necessary extension in the PHP image used)
 
