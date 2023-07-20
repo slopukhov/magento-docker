@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+echo "$(sed "s|#extension = spx.so|extension = spx.so|" /usr/local/etc/php/conf.d/php-spx.ini)" > /usr/local/etc/php/conf.d/php-spx.ini

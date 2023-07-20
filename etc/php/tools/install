@@ -29,7 +29,6 @@ bin/magento setup:install \
 
 echo "Compiling Magento with changes..."
 bin/magento setup:upgrade
-bin/magento setup:di:compile
 bin/magento cache:flush
 
 source /usr/local/bin/magento2/post-scripts

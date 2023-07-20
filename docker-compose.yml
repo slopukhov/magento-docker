@@ -36,7 +36,7 @@ services:
       - "${DB_PORT}:3306"
     command: --default-authentication-plugin=mysql_native_password
   app:
-    image: slopukhov/php:8.2.7-fpm
+    image: slopukhov/php:8.2.8-fpm
     # to re-build image use the following docker file:
     # build:
     #   context: .
@@ -58,6 +58,7 @@ services:
       - ./etc/php/php.ini:/usr/local/etc/php/php.ini
       - ./etc/php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
       - ./etc/php/uopz.ini:/usr/local/etc/php/conf.d/uopz.ini
+      - ./etc/php/php-spx.ini:/usr/local/etc/php/conf.d/php-spx.ini
       - ./etc/php/tideways.ini:/usr/local/etc/php/conf.d/tideways.ini
       - ./etc/php/php-fpm.conf:/usr/local/etc/php-fpm.conf
     environment:
