@@ -1,0 +1,41 @@
+ARG PHP_VERSION=8.1.20
+
+FROM php:$PHP_VERSION-fpm
+
+COPY --from=composer:2.2.21 /usr/bin/composer /usr/local/bin/
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        htop \
+        vim \
+        git \
+        wget \
+        unzip \
+        gnupg \
+        default-mysql-client \
+        libfreetype6-dev \
+        libjpeg62-turbo-dev \
+        libpng-dev \
+        libmcrypt-dev \
+        libsodium-dev \
+        libicu-dev \
+        libxslt-dev \
+        libssl-dev \
+        libgringotts-dev \
+        libzip-dev \
+        zlib1g-dev \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install pcntl gd opcache bcmath soap intl zip xsl pdo_mysql sockets \
+    && pecl install -f xdebug-3.2.1 apcu msgpack libsodium \
+    && pecl install uopz-7.1.1 \
+    && docker-php-ext-enable pcntl gd opcache bcmath soap intl zip xsl pdo_mysql sockets apcu msgpack \
+    && usermod -a -G root www-data \
+    && chmod +x /usr/local/bin/*
+
+RUN git clone https://github.com/NoiseByNorthwest/php-spx.git
+RUN cd php-spx && git checkout release/latest && phpize && ./configure && make && make install
+
+WORKDIR /var/www
+
+EXPOSE 9000
+CMD ["php-fpm", "-R"]
