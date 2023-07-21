@@ -2,7 +2,7 @@ version: '3.7'
 services:
   # https://devdocs.magento.com/guides/v2.4/install-gde/system-requirements.html
   web:
-    image: nginx:1.21.6
+    image: nginx:1.25.1
     hostname: web
     container_name: web
     volumes:
