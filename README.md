@@ -173,7 +173,8 @@ Api Functional
 * Disable: `docker-compose exec app magento spx-disable && docker-compose restart app web`
 
 Add parameters `?SPX_KEY=dev&SPX_ENABLED=1` to your URL to measure this URL. Example: `https://magento.test/?SPX_KEY=dev&SPX_ENABLED=1`
-Open with your browser the following URL: `https://magento.test/?SPX_KEY=dev&SPX_UI_URI=/` to access to the spx web UI control panel.
+
+Open with your browser the following URL: `https://magento.test/?SPX_KEY=dev&SPX_UI_URI=/` to access to the spx web UI control panel with measurement results.
 
 :exclamation: for example, this extension is present in PHP image: `slopukhov/php:8.2.8-fpm`
 
