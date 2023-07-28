@@ -1,6 +1,15 @@
 version: '3.7'
 services:
   # https://devdocs.magento.com/guides/v2.4/install-gde/system-requirements.html
+  varnish:
+    # https://experienceleague.adobe.com/docs/commerce-operations/configuration-guide/cache/configure-varnish-commerce.html
+    image: varnish:6.0.11
+    hostname: varnish
+    container_name: varnish
+    volumes:
+      - ./etc/varnish/default.vcl:/etc/varnish/default.vcl
+    ports:
+      - "${WEB_PORT}:80"
   web:
     image: nginx:1.25.1
     hostname: web
@@ -15,7 +24,6 @@ services:
         aliases:
           - magento.test
     ports:
-      - "${WEB_PORT}:80"
       - "${WEBS_PORT}:443"
     depends_on:
       - app
