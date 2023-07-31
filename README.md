@@ -105,6 +105,13 @@
 * RUN `cd magento2ce` to go to the root directory of the project
 * RUN `bin/magento dev:query-log:enable` to enable DB query-log
 
+#### Configure the application to use Varnish
+
+* Update the file `etc/varnish/default.vcl` with the necessary configuration described in this documentation https://experienceleague.adobe.com/docs/commerce-operations/configuration-guide/cache/configure-varnish-commerce.html
+* Restart varnish: `docker-compose restart varnish`
+
+:exclamation: Access list: `app`, Backend host: `web`, Backend port: `8080`.
+
 #### Tests execution
 
 * RUN `docker-compose exec app bash` to connect to docker container
