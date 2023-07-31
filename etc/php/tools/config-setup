@@ -9,7 +9,7 @@ bin/magento config:set system/security/max_session_size_admin 500000
 bin/magento config:set cms/wysiwyg/enabled disabled
 bin/magento config:set admin/security/use_form_key 0
 
-bin/magento setup:config:set -n --session-save=redis --session-save-redis-host=redis --session-save-redis-port=${REDIS_PORT} --cache-backend-redis-db=0
+bin/magento setup:config:set -n --session-save=redis --session-save-redis-host=redis --session-save-redis-port=${REDIS_PORT} --cache-backend=redis --cache-backend-redis-server=redis --cache-backend-redis-port=${REDIS_PORT} --cache-backend-redis-db=2
 
 bin/magento setup:config:set -n --amqp-host=rabbitmq --amqp-port=${RABBIT_PORT} --amqp-user=guest --amqp-password=guest
 
