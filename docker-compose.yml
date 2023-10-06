@@ -99,6 +99,14 @@ services:
     container_name: mftf
     ports:
       - "${MFTF_PORT}:5900"
+  jmeter:
+    image: slopukhov/jmeter-gui:5.4.3
+    hostname: jmeter
+    container_name: jmeter
+    volumes:
+      - ./build/jmeter/test-scenario:/root/jmeter/
+    ports:
+      - "${JMETER_PORT}:5900"
 networks:
   default:
     driver: bridge

@@ -151,6 +151,10 @@ Integration
 Api Functional
 * RUN `vendor/phpunit/phpunit/phpunit --configuration /var/www/magento2ce/dev/tests/api-functional/phpunit_rest.xml.dist dev/tests/api-functional/testsuite/ApiFunctionalTestPath` to run Api Functional test. Instead of ApiFunctionalTestPath - specify the real Api Functional test path of the test
 
+#### JMeter execution
+
+* You can log in to the JMeter GUI using the link - `vnc://magento.test:5902` and password - `password`
+
 #### Enable/disable Xdebug 
 
 * Enable: `docker-compose exec app magento xdebug-enable && docker-compose restart app web`
