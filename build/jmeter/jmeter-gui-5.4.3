@@ -8,7 +8,7 @@ ENV RESOLUTION "1366x768x24"
 ENV VNC_PASS "password"
 
 RUN  echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
-    && apk add --no-cache curl xfce4-terminal xvfb x11vnc xfce4 openjdk8-jre bash \
+    && apk add --no-cache xfce4-terminal xvfb x11vnc xfce4 openjdk8-jre bash \
     && wget -qO- -O /tmp/jmeter.tgz https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-${JMETER_VERSION}.tgz \
     && tar -xvf /tmp/jmeter.tgz -C /tmp \
     && rm /tmp/jmeter.tgz \
