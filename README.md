@@ -171,6 +171,13 @@ Api Functional
 
 :exclamation: for example, this extension is present in PHP image: `slopukhov/php:8.1.19-fpm`
 
+#### Enable/disable xhprof (Depends on the availability of the necessary extension in the PHP image used)
+
+* Enable: `docker-compose exec app magento xhprof-enable && docker-compose restart app web`
+* Disable: `docker-compose exec app magento xhprof-disable && docker-compose restart app web`
+
+:exclamation: for example, this extension is present in PHP image: `slopukhov/php:8.2.12-fpm`
+
 #### Enable/disable php-spx (Depends on the availability of the necessary extension in the PHP image used)
 
 * Enable: `docker-compose exec app magento spx-enable && docker-compose restart app web`
