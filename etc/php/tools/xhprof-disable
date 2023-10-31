@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+echo "$(sed "s|extension = xhprof.so|#extension = xhprof.so|" /usr/local/etc/php/conf.d/xhprof.ini)" > /usr/local/etc/php/conf.d/xhprof.ini

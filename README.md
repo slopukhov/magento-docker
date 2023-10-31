@@ -143,6 +143,13 @@ Api Functional
 
 :exclamation: for example, this extension is present in PHP image: `slopukhov/php:8.1.19-fpm`
 
+#### Enable/disable xhprof (Depends on the availability of the necessary extension in the PHP image used)
+
+* Enable: `mutagen project run xhprof-enable`
+* Disable: `mutagen project run xhprof-disable`
+
+:exclamation: for example, this extension is present in PHP image: `slopukhov/php:8.2.12-fpm`
+
 #### Enable/disable php-spx (Depends on the availability of the necessary extension in the PHP image used)
 
 * Enable: `mutagen project run spx-enable`
