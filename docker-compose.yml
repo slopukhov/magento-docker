@@ -36,11 +36,11 @@ services:
       - "${DB_PORT}:3306"
     command: --default-authentication-plugin=mysql_native_password
   app:
-    image: slopukhov/php:8.2.12-fpm
+    # image: slopukhov/php:8.2.12-fpm
     # to re-build image use the following docker file:
-    # build:
-    #   context: .
-    #   dockerfile: build/php/fpm
+    build:
+      context: .
+      dockerfile: build/php/fpm
     hostname: app
     container_name: app
     depends_on:
