@@ -1,8 +1,8 @@
-ARG PHP_VERSION=8.2.12
+ARG PHP_VERSION=8.2.13
 
 FROM php:$PHP_VERSION-fpm
 
-COPY --from=composer:2.5.8 /usr/bin/composer /usr/local/bin/
+COPY --from=composer:2.7 /usr/bin/composer /usr/local/bin/
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
