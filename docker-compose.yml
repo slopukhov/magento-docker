@@ -54,6 +54,7 @@ services:
       - ./etc/php/app/sendmail:/usr/local/bin/sendmail
       - ./etc/php/tools/magento:/usr/local/bin/magento
       - ./etc/php/tools:/usr/local/bin/magento2
+      # Configuration for PHP versions below 8.4
       - ./etc/php/php.ini:/usr/local/etc/php/php.ini
       - ./etc/php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
       - ./etc/php/uopz.ini:/usr/local/etc/php/conf.d/uopz.ini
@@ -61,6 +62,19 @@ services:
       - ./etc/php/php-spx.ini:/usr/local/etc/php/conf.d/php-spx.ini
       - ./etc/php/tideways.ini:/usr/local/etc/php/conf.d/tideways.ini
       - ./etc/php/php-fpm.conf:/usr/local/etc/php-fpm.conf
+      # PHP 8.4 cli specific configuration
+      - ./etc/php/php.ini:/etc/php/8.4/cli/php.ini
+      - ./etc/php/xdebug.ini:/etc/php/8.4/cli/conf.d/xdebug.ini
+      - ./etc/php/uopz.ini:/etc/php/8.4/cli/conf.d/uopz.ini
+      - ./etc/php/xhprof.ini:/etc/php/8.4/cli/conf.d/xhprof.ini
+      - ./etc/php/php-spx.ini:/etc/php/8.4/cli/conf.d/php-spx.ini
+      # PHP 8.4 fpm specific configuration
+      - ./etc/php/php.ini:/etc/php/8.4/fpm/php.ini
+      - ./etc/php/xdebug.ini:/etc/php/8.4/fpm/conf.d/xdebug.ini
+      - ./etc/php/uopz.ini:/etc/php/8.4/fpm/conf.d/uopz.ini
+      - ./etc/php/xhprof.ini:/etc/php/8.4/fpm/conf.d/xhprof.ini
+      - ./etc/php/php-spx.ini:/etc/php/8.4/fpm/conf.d/php-spx.ini
+      - ./etc/php/php8.4-fpm.conf:/etc/php/8.4/fpm/php-fpm.conf
     environment:
       #COMPOSER_HOME: /var/www/.composer
       PHP_IDE_CONFIG: serverName=magento.test
