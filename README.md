@@ -51,6 +51,8 @@ To enable virtiofs in Docker Desktop:
 
 5. Optionally, you can update file `etc/php/tools/post-scripts` to run custom commands after installation.
 
+6. Optionally, you can modify the `docker-compose.yml` file to configure the versions of the services (PHP, MariaDB, Redis, OpenSearch) required for your specific Magento 2 version.
+
 ### Project start
 
 * RUN `docker-compose pull` to pull docker images
