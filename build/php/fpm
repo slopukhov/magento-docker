@@ -1,42 +1,49 @@
-ARG PHP_VERSION=8.3.23
+FROM ubuntu:22.04
 
-FROM php:$PHP_VERSION-fpm
+ENV DEBIAN_FRONTEND=noninteractive
 
+# Install Composer
 COPY --from=composer:2.8 /usr/bin/composer /usr/local/bin/
 
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-        htop \
-        vim \
-        git \
-        wget \
-        unzip \
-        gnupg \
-        default-mysql-client \
-        libfreetype6-dev \
-        libjpeg62-turbo-dev \
-        libpng-dev \
-        libmcrypt-dev \
-        libsodium-dev \
-        libicu-dev \
-        libxslt-dev \
-        libssl-dev \
-        libgringotts-dev \
-        libzip-dev \
-        zlib1g-dev \
-    && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install pcntl gd opcache bcmath soap intl zip xsl pdo_mysql sockets ftp \
-    && pecl install -f xdebug-3.4.5 apcu msgpack \
-    && pecl install -f xhprof-2.3.10 \
-    && pecl install uopz-7.1.1 \
-    && docker-php-ext-enable pcntl gd opcache bcmath soap intl zip xsl pdo_mysql sockets apcu msgpack ftp \
-    && usermod -a -G root www-data \
-    && chmod +x /usr/local/bin/*
+# Install basic tools
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    software-properties-common \
+    htop \
+    vim \
+    git \
+    curl \
+    wget \
+    unzip \
+    gnupg \
+    default-mysql-client \
+    libfreetype6-dev \
+    libjpeg-turbo8-dev \
+    libpng-dev \
+    libmcrypt-dev \
+    libsodium-dev \
+    libicu-dev \
+    libxslt1-dev \
+    libssl-dev \
+    libzip-dev \
+    zlib1g-dev
 
-RUN git clone https://github.com/NoiseByNorthwest/php-spx.git
-RUN cd php-spx && git checkout release/latest && phpize && ./configure && make && make install
+# Add PHP repository and install PHP and extensions
+RUN add-apt-repository ppa:ondrej/php -y && \
+    apt-get update && \
+    apt-get install -y php8.4-fpm php8.4-cli php8.4-dev \
+    php8.4-gd php8.4-opcache php8.4-bcmath php8.4-soap php8.4-intl php8.4-mbstring \
+    php8.4-zip php8.4-xsl php8.4-mysql php8.4-sockets php8.4-ftp php8.4-curl \
+    php-pear php8.4-apcu php8.4-msgpack php8.4-xdebug php8.4-xhprof php8.4-uopz
+
+RUN phpdismod xdebug xhprof uopz
+
+# Install php-spx
+RUN git clone https://github.com/NoiseByNorthwest/php-spx.git && \
+    cd php-spx && git checkout release/latest && phpize8.4 && ./configure --with-php-config=php-config8.4 && make && make install
+
+RUN mkdir -p /run/php
 
 WORKDIR /var/www
 
 EXPOSE 9000
-CMD ["php-fpm", "-R"]
+CMD ["php-fpm8.4", "-F"]
