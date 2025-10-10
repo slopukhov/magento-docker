@@ -15,6 +15,9 @@ jobs:
         with:
           path: magento-docker
 
+      - name: Copy .env.dist to .env
+        run: cp magento-docker/.env.dist magento-docker/.env
+
       - name: Create magento2ce directory
         run: mkdir -p repos/magento2ce
 
@@ -25,8 +28,18 @@ jobs:
           ref: 2.4-develop
           path: repos/magento2ce
 
-      - name: Copy .env.dist to .env
-        run: cp magento-docker/.env.dist magento-docker/.env
+      - name: Set writable permissions for Magento 2 directories (host)
+        run: |
+          mkdir -p repos/magento2ce/var
+          mkdir -p repos/magento2ce/var/page_cache
+          mkdir -p repos/magento2ce/pub
+          mkdir -p repos/magento2ce/generated
+          mkdir -p repos/magento2ce/app/etc
+          chmod -R 777 repos/magento2ce/var
+          chmod -R 777 repos/magento2ce/var/page_cache
+          chmod -R 777 repos/magento2ce/pub
+          chmod -R 777 repos/magento2ce/generated
+          chmod -R 777 repos/magento2ce/app/etc
 
       - name: Install Docker Compose
         run: |
@@ -47,6 +60,29 @@ jobs:
 
       - name: Apply Magento 2 configuration
         run: docker-compose exec app magento config-setup
+        working-directory: magento-docker
+
+      - name: Set ownership and writable permissions for Magento 2 directories (container)
+        run: |
+          docker-compose exec app chown -R www-data:www-data /var/www/magento2ce/var
+          docker-compose exec app chown -R www-data:www-data /var/www/magento2ce/var/page_cache
+          docker-compose exec app chown -R www-data:www-data /var/www/magento2ce/pub
+          docker-compose exec app chown -R www-data:www-data /var/www/magento2ce/generated
+          docker-compose exec app chown -R www-data:www-data /var/www/magento2ce/app/etc
+          docker-compose exec app chmod -R 777 /var/www/magento2ce/var
+          docker-compose exec app chmod -R 777 /var/www/magento2ce/var/page_cache
+          docker-compose exec app chmod -R 777 /var/www/magento2ce/pub
+          docker-compose exec app chmod -R 777 /var/www/magento2ce/generated
+          docker-compose exec app chmod -R 777 /var/www/magento2ce/app/etc
+        working-directory: magento-docker
+
+      - name: Check Magento homepage and output HTML
+        run: |
+          echo "127.0.0.1 magento.test" | sudo tee -a /etc/hosts
+          html=$(curl -ksSf https://magento.test)
+          echo "$html"
+          echo "$html" | grep -q "Home page"
+          echo "$html" | grep -q "Sign In"
         working-directory: magento-docker
 
       - name: Report success
