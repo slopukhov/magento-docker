@@ -4,11 +4,50 @@ on:
   workflow_dispatch:
 
 jobs:
-  magento-docker-check:
+  magento-docker-health-check:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Create magento-docker directory
+        run: mkdir -p magento-docker
+
+      - name: Checkout code into magento-docker
         uses: actions/checkout@v4
+        with:
+          path: magento-docker
+
+      - name: Create magento2ce directory
+        run: mkdir -p repos/magento2ce
+
+      - name: Checkout Magento 2 (2.4-develop) into magento2ce
+        uses: actions/checkout@v4
+        with:
+          repository: magento/magento2
+          ref: 2.4-develop
+          path: repos/magento2ce
+
+      - name: Copy .env.dist to .env
+        run: cp magento-docker/.env.dist magento-docker/.env
+
+      - name: Install Docker Compose
+        run: |
+          sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+          sudo chmod +x /usr/local/bin/docker-compose
+
+      - name: Pull Docker images
+        run: docker-compose pull
+        working-directory: magento-docker
+
+      - name: Build and start containers
+        run: docker-compose up --build --detach
+        working-directory: magento-docker
+
+      - name: Install Magento 2
+        run: docker-compose exec app magento install
+        working-directory: magento-docker
+
+      - name: Apply Magento 2 configuration
+        run: docker-compose exec app magento config-setup
+        working-directory: magento-docker
 
       - name: Report success
         run: echo "::notice::Magento Docker health check passed."
