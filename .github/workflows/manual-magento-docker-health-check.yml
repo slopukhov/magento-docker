@@ -3,6 +3,9 @@ name: Manual Magento Docker Health Check
 on:
   workflow_dispatch:
   pull_request:
+  push:
+    branches:
+      - develop
 
 jobs:
   magento-docker-health-check:
