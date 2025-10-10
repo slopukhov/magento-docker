@@ -200,7 +200,7 @@ Open with your browser the following URL: `https://magento.test/?SPX_KEY=dev&SPX
 
 #### Emails sending
 
-Sent emails will be saved in folder `~/www/magento2ce/var/tmp/mails/` as .htm files
+Sent emails will be saved in folder `~/www/magento2ce/var/tmp/mails/` as `.htm` files
 
 ### Project termination (removes all containers and volumes)
 
