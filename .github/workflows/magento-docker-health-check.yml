@@ -1,4 +1,4 @@
-name: Manual Magento Docker Health Check
+name: Magento Docker Health Check
 
 on:
   workflow_dispatch:
