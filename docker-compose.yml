@@ -39,7 +39,7 @@ services:
     # image for PHP 8.5 is not published yet, build it locally:
     build:
       context: .
-      dockerfile: build/php/fpm-8.5
+      dockerfile: build/php/fpm
     hostname: app
     container_name: app
     depends_on:

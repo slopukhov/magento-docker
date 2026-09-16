@@ -89,5 +89,21 @@ jobs:
           echo "$html" | grep -q "Sign In"
         working-directory: magento-docker
 
+      - name: Verify Xdebug toggle and functionality
+        run: tests/dev-tools/xdebug.sh
+        working-directory: magento-docker
+
+      - name: Verify uopz toggle and functionality
+        run: tests/dev-tools/uopz.sh
+        working-directory: magento-docker
+
+      - name: Verify xhprof toggle and functionality
+        run: tests/dev-tools/xhprof.sh
+        working-directory: magento-docker
+
+      - name: Verify php-spx toggle and functionality
+        run: tests/dev-tools/php-spx.sh
+        working-directory: magento-docker
+
       - name: Report success
         run: echo "::notice::Magento Docker health check passed."
